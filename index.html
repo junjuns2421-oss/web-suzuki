@@ -2,6 +2,7 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
+<<<<<<< HEAD
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Online time kun</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
@@ -50,6 +51,48 @@
         function showContent() {
             document.getElementById("login-screen").style.display = "none";
             document.getElementById("main-content").style.display = "flex";
+=======
+    <title>suzukiのサイト</title>
+    <style>
+        body { background: #121212; color: #fff; text-align: center; font-family: sans-serif; }
+        .box { padding: 50px; }
+        #main-content { display: none; }
+        input { padding: 10px; border-radius: 5px; border: none; }
+        button { padding: 10px 20px; border-radius: 20px; background: #81c784; border: none; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+    <div id="login-screen" class="box">
+        <h2>パスワードを入力</h2>
+        <input type="password" id="pass">
+        <button onclick="check()">ログイン</button>
+    </div>
+
+    <div id="main-content" class="box">
+        <h1>suzukiのサイト</h1>
+        <p>ログイン成功しました。</p>
+        <img src="latest_print.png" alt="プリント">
+    </div>
+
+    <script>
+        function check() {
+            var input = document.getElementById("pass").value;
+            if (input === "suzuki2026") {
+                document.cookie = "auth=ok; max-age=86400; path=/";
+                show();
+            } else { 
+                alert("パスワードが違います"); 
+            }
+        }
+        function show() {
+            document.getElementById("login-screen").style.display = "none";
+            document.getElementById("main-content").style.display = "block";
+        }
+        // ページを開いたときにCookieがあれば自動ログイン
+        if (document.cookie.indexOf("auth=ok") !== -1) {
+            show();
+>>>>>>> 8cf1b633509dad4a8ee350b435a81df16755b0ab
         }
     </script>
 </body>
