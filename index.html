@@ -2,32 +2,27 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>suzukiのサイト</title>
     <style>
-        body { font-family: sans-serif; background-color: #121212; color: #e0e0e0; margin: 0; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-        #login-screen { display: flex; flex-direction: column; align-items: center; }
-        #main-content { display: none; flex-direction: column; align-items: center; width: 100%; }
-        .login-box { background: #1e1e1e; padding: 40px; border-radius: 16px; text-align: center; }
-        input { padding: 10px; margin: 10px; border-radius: 5px; border: none; }
-        button { padding: 10px 20px; border-radius: 20px; border: none; background: #81c784; cursor: pointer; }
-        img { max-width: 90%; border-radius: 8px; margin-top: 20px; }
+        body { background: #121212; color: #fff; text-align: center; font-family: sans-serif; }
+        #main-content { display: none; }
+        .box { padding: 50px; }
+        input { padding: 10px; }
+        button { padding: 10px 20px; cursor: pointer; }
     </style>
 </head>
 <body>
 
-    <div id="login-screen">
-        <div class="login-box">
-            <h2>ログイン</h2>
-            <input type="password" id="pass" placeholder="パスワード">
-            <button onclick="check()">ログイン</button>
-        </div>
+    <div id="login-screen" class="box">
+        <h2>パスワードを入力</h2>
+        <input type="password" id="pass">
+        <button onclick="check()">ログイン</button>
     </div>
 
-    <div id="main-content">
+    <div id="main-content" class="box">
         <h1>suzukiのサイト</h1>
-        <p id="time-display">最終更新を確認中...</p>
-        <img src="latest_print.png" alt="最新プリント" onerror="this.style.display='none'">
+        <p>ログイン成功しました。</p>
+        <img src="latest_print.png" alt="プリント">
     </div>
 
     <script>
@@ -39,12 +34,7 @@
         }
         function show() {
             document.getElementById("login-screen").style.display = "none";
-            document.getElementById("main-content").style.display = "flex";
-            // last_update.txtの内容を取得して表示
-            fetch('last_update.txt')
-                .then(r => r.text())
-                .then(t => { document.getElementById("time-display").innerText = "最終更新: " + t; })
-                .catch(() => { document.getElementById("time-display").innerText = "更新日時取得失敗"; });
+            document.getElementById("main-content").style.display = "block";
         }
         if (document.cookie.includes("auth=ok")) show();
     </script>
