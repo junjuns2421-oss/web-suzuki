@@ -5,10 +5,10 @@
     <title>suzukiのサイト</title>
     <style>
         body { background: #121212; color: #fff; text-align: center; font-family: sans-serif; }
-        #main-content { display: none; }
         .box { padding: 50px; }
-        input { padding: 10px; }
-        button { padding: 10px 20px; cursor: pointer; }
+        #main-content { display: none; }
+        input { padding: 10px; border-radius: 5px; border: none; }
+        button { padding: 10px 20px; border-radius: 20px; background: #81c784; border: none; cursor: pointer; }
     </style>
 </head>
 <body>
@@ -27,16 +27,22 @@
 
     <script>
         function check() {
-            if (document.getElementById("pass").value === "suzuki2026") {
+            var input = document.getElementById("pass").value;
+            if (input === "suzuki2026") {
                 document.cookie = "auth=ok; max-age=86400; path=/";
                 show();
-            } else { alert("パスワードが違います"); }
+            } else { 
+                alert("パスワードが違います"); 
+            }
         }
         function show() {
             document.getElementById("login-screen").style.display = "none";
             document.getElementById("main-content").style.display = "block";
         }
-        if (document.cookie.includes("auth=ok")) show();
+        // ページを開いたときにCookieがあれば自動ログイン
+        if (document.cookie.indexOf("auth=ok") !== -1) {
+            show();
+        }
     </script>
 </body>
 </html>
